@@ -1,14 +1,21 @@
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.group.FlxGroup;
 import flixel.util.FlxRandom;
 
 class Fish extends FlxSprite {
 
-	public function new() {
+	private var group:FlxGroup;
+
+	public function new(group:FlxGroup) {
 		super();
-		loadGraphic("graphics/fish.png");
+		this.group = group;
+		loadGraphic("graphics/fish.png", true, false, 32, 32);
+		animation.add("right", [0]);
+		animation.add("left", [1]);
 		velocity.x = FlxRandom.floatRanged(-40, 40);
 		velocity.y = FlxRandom.floatRanged(-5, 5);
+		animation.play((velocity.x < 0) ? "left" : "right");
 	}
 
 	override public function update():Void {

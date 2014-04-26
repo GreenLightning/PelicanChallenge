@@ -5,8 +5,11 @@ import flixel.util.FlxTimer;
 
 class FishGroup extends FlxGroup {
 
-	public function new() {
+	private var parent:PlayState;
+
+	public function new(parent:PlayState) {
 		super();
+		this.parent = parent;
 		FlxTimer.start(0.5, spawn);	
 	}
 
@@ -16,10 +19,20 @@ class FishGroup extends FlxGroup {
 	}
 
 	private function makeFish(x:Float, y:Float) {
-		var fish = new Fish();
+		var fish = new Fish(this);
 		fish.x = x;
 		fish.y = y;
 		add(fish);
+	}
+
+	override public function update():Void {
+		super.update();
+		FlxG.overlap(parent.player, this, onOverlap);
+	}
+
+	private function onOverlap(player:Player, fish:Fish) {
+		fish.kill();
+		remove(fish, true);
 	}
 
 }

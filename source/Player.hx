@@ -11,13 +11,15 @@ enum PlayerState {
 
 class Player extends FlxSprite {
 
-	private var MOVE_SPEED = 300;
-	private var DIVE_SPEED = 400;
+	private static inline var MOVE_SPEED = 300;
+	private static inline var DIVE_SPEED = 400;
 
+	private var parent:PlayState;
 	private var state:PlayerState = Gliding;
 
-	public function new() {
+	public function new(parent:PlayState) {
 		super();
+		this.parent = parent;
 		loadGraphic("graphics/pelican.png", true, false, 32, 32);
 		animation.add("glide-right", [1, 2, 3], 5, true);
 		animation.add("glide-left", [5, 6, 7], 5, true);

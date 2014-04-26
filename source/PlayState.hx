@@ -6,20 +6,19 @@ import flixel.ui.FlxButton;
 import flixel.util.FlxMath;
 
 class PlayState extends FlxState {
+
+	public var fish:FishGroup;
+	public var player:Player;
 	
 	override public function create():Void {
 		super.create();
 		add(new World());
-		add(new FishGroup());
-		add(new Player());
-	}
-	
-	override public function destroy():Void {
-		super.destroy();
-	}
-	
-	override public function update():Void {
-		super.update();
+
+		fish = new FishGroup(this);
+		add(fish);
+
+		player = new Player(this);
+		add(player);
 	}
 	
 }
