@@ -1,4 +1,3 @@
-- score
 - bigger fish
 - clouds
 - splashes

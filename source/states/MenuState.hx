@@ -29,7 +29,7 @@ class MenuState extends FlxState {
 
 	override public function update():Void {
 		super.update();
-		if (FlxG.keys.justPressed.ENTER) {
+		if (FlxG.keys.justPressed.ANY) {
 			FlxG.switchState(new PlayState());
 		}
 	}

@@ -19,6 +19,9 @@ class Player extends FlxSprite {
 	private static inline var HORIZONTAL_ACCELERATION = 300;
 	private static inline var DIVE_ACCELERATION = 400;
 
+	public var score:Int = 0;
+	public var time:Float = 60;
+
 	private var parent:PlayState;
 	private var state:PlayerState = Gliding;
 
@@ -47,10 +50,15 @@ class Player extends FlxSprite {
 
 	override public function update():Void {
 		super.update();
+		updateTime();
 		move();
 		applyState();
 		animate();
 		wrapAround();
+	}
+
+	private function updateTime():Void {
+		time -= FlxG.elapsed;
 	}
 
 	private function move():Void {
@@ -72,11 +80,11 @@ class Player extends FlxSprite {
 					acceleration.y = DIVE_ACCELERATION;
 				}
 				if (FlxG.keys.pressed.UP) {
-					velocity.y = (y < 20) ? 20 : -VERTICAL_SPEED;
+					velocity.y = (y < 30) ? 30 : -VERTICAL_SPEED;
 				} else if (FlxG.keys.pressed.DOWN) {
 					velocity.y = VERTICAL_SPEED;
 				} else {
-					velocity.y = (y < 20) ? 20 : 0;
+					velocity.y = (y < 30) ? 30 : 0;
 				}
 			case DiveStart:
 				if (y + height / 2 > FlxG.height / 2) {
@@ -127,6 +135,7 @@ class Player extends FlxSprite {
 
 	public function eat():Void {
 		eatSound.play();
+		score++;
 	}
 
 	public function hit():Void {
