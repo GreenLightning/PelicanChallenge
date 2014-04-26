@@ -1,4 +1,3 @@
-- spawn system
 - jellyfish
 - different fish
 - sounds

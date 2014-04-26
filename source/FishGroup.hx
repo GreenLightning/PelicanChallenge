@@ -15,14 +15,31 @@ class FishGroup extends FlxGroup {
 	}
 
 	private function spawn(?timer:FlxTimer):Void {
-		var start = FlxRandom.floatRanged(0, FlxG.width);
-		var end = start + FlxRandom.sign() * FlxRandom.floatRanged(FlxG.width / 4, FlxG.width);
-		makeFish(FlxRandom.floatRanged(0, FlxG.width), FlxRandom.floatRanged(FlxG.height / 2, FlxG.height));
-		FlxTimer.start(FlxRandom.floatRanged(0.5, 1.5), spawn);
+		if (countLiving() < 30) {
+			spawnGroup();
+		}
+		FlxTimer.start(FlxRandom.floatRanged(1, 4), spawn);
 	}
 
-	private function makeFish(x:Float, y:Float) {
-		var fish = new Fish(this);
+	private function spawnGroup():Void {
+		var startX = FlxRandom.floatRanged(0, FlxG.width);
+		var endX = startX + FlxRandom.floatRanged(FlxG.width / 8, FlxG.width / 2);
+		var middleX = (startX + endX) / 2;
+		var upperY = FlxG.height / 2 + FlxRandom.floatRanged(0, FlxG.height * 0.2);
+		var lowerY = FlxG.height - FlxRandom.floatRanged(0, FlxG.height * 0.2);
+		var xvel = FlxRandom.floatRanged(-40, 40);
+		var yvel = FlxRandom.floatRanged(-5, 5);
+		var xpos = startX;
+		while (xpos < endX) {
+			var posPercentage = (xpos - middleX) / (middleX - startX);
+			var ypos = lowerY + posPercentage * posPercentage * (upperY - lowerY);
+			spawnFish(xpos % FlxG.width, ypos, xvel, yvel);
+			xpos += 20;
+		}
+	}
+
+	private function spawnFish(x:Float, y:Float, xvel:Float, yvel:Float) {
+		var fish = new Fish(this, xvel, yvel);
 		fish.x = x;
 		fish.y = y;
 		add(fish);
