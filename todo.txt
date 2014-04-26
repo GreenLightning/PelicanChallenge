@@ -1,0 +1,6 @@
+- pickup
+- score
+- menu
+- clouds?
+- splashes
+- bubbles
