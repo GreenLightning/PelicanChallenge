@@ -1,5 +1,6 @@
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.system.FlxSound;
 import flixel.util.FlxColor;
 
 enum PlayerState {
@@ -18,6 +19,10 @@ class Player extends FlxSprite {
 	private var parent:PlayState;
 	private var state:PlayerState = Gliding;
 
+	private var eatSound:FlxSound;
+	private var hitSound:FlxSound;
+	private var splashSound:FlxSound;
+
 	public function new(parent:PlayState) {
 		super();
 		this.parent = parent;
@@ -32,6 +37,9 @@ class Player extends FlxSprite {
 		velocity.x = 50;
 		maxVelocity.x = 600;
 		maxVelocity.y = 600;
+		eatSound = FlxG.sound.load("sounds/eat.wav");
+		hitSound = FlxG.sound.load("sounds/hit.wav");
+		splashSound = FlxG.sound.load("sounds/splash.wav");
 	}
 
 	override public function update():Void {
@@ -69,11 +77,13 @@ class Player extends FlxSprite {
 				}
 			case DiveStart:
 				if (y + height / 2 > FlxG.height / 2) {
+					splashSound.play(true);
 					state = DiveUnderWater;
 					acceleration.y = -DIVE_ACCELERATION;
 				}
 			case DiveUnderWater:
 				if(y + height / 2 < FlxG.height / 2) {
+					splashSound.play(true);
 					state = DiveEnd;
 					acceleration.y = DIVE_ACCELERATION;
 				}
@@ -110,6 +120,14 @@ class Player extends FlxSprite {
 		if (x - width / 2 < 0) {
 			x += FlxG.width;
 		}
+	}
+
+	public function eat():Void {
+		eatSound.play();
+	}
+
+	public function hit():Void {
+		hitSound.play();
 	}
 
 }

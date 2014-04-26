@@ -1,7 +1,6 @@
-- different fish
-- sounds
-- score
 - menu
+- score
+- bigger fish
 - clouds
 - splashes
 - bubbles
