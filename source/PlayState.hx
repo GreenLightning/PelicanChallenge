@@ -9,6 +9,7 @@ class PlayState extends FlxState {
 	
 	override public function create():Void {
 		super.create();
+		add(new World());
 	}
 	
 	override public function destroy():Void {
