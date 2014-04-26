@@ -11,8 +11,9 @@ enum PlayerState {
 
 class Player extends FlxSprite {
 
-	private static inline var MOVE_SPEED = 300;
-	private static inline var DIVE_SPEED = 400;
+	private static inline var VERTICAL_SPEED = 100;
+	private static inline var HORIZONTAL_ACCELERATION = 300;
+	private static inline var DIVE_ACCELERATION = 400;
 
 	private var parent:PlayState;
 	private var state:PlayerState = Gliding;
@@ -43,9 +44,9 @@ class Player extends FlxSprite {
 
 	private function move():Void {
 		if (FlxG.keys.pressed.LEFT) {
-			acceleration.x = -MOVE_SPEED;
+			acceleration.x = -HORIZONTAL_ACCELERATION;
 		} else if (FlxG.keys.pressed.RIGHT) {
-			acceleration.x = MOVE_SPEED;
+			acceleration.x = HORIZONTAL_ACCELERATION;
 		} else {
 			acceleration.x = 0;
 		}
@@ -54,19 +55,30 @@ class Player extends FlxSprite {
 	private function applyState():Void {
 		switch (state) {
 			case Gliding:
-				if (FlxG.keys.justPressed.SPACE) {
+				if (FlxG.keys.justPressed.SPACE || y + height > FlxG.height / 2 - 20) {
 					state = DiveStart;
-					acceleration.y = DIVE_SPEED;
+					velocity.y = 0;
+					acceleration.y = DIVE_ACCELERATION;
+				}
+				if (y < 20) {
+					y = 20;
+				}
+				if (FlxG.keys.pressed.UP) {
+					velocity.y = -VERTICAL_SPEED;
+				} else if (FlxG.keys.pressed.DOWN) {
+					velocity.y = VERTICAL_SPEED;
+				} else {
+					velocity.y = 0;
 				}
 			case DiveStart:
-				if (y > FlxG.height / 2) {
+				if (y + height / 2 > FlxG.height / 2) {
 					state = DiveUnderWater;
-					acceleration.y = -DIVE_SPEED;
+					acceleration.y = -DIVE_ACCELERATION;
 				}
 			case DiveUnderWater:
-				if(y < FlxG.height / 2) {
+				if(y + height / 2 < FlxG.height / 2) {
 					state = DiveEnd;
-					acceleration.y = DIVE_SPEED;
+					acceleration.y = DIVE_ACCELERATION;
 				}
 			case DiveEnd:
 				if (velocity.y >= 0) {
