@@ -1,3 +1,5 @@
+package sprites;
+
 import flixel.FlxSprite;
 
 class World extends FlxSprite {

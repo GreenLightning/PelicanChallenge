@@ -1,8 +1,11 @@
+package sprites;
+
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.util.FlxRandom;
 import flixel.util.FlxTimer;
+import states.PlayState;
 
 class JellyfishGroup extends FlxGroup {
 

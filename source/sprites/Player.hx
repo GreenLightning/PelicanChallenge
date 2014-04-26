@@ -1,7 +1,10 @@
+package sprites;
+
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.system.FlxSound;
 import flixel.util.FlxColor;
+import states.PlayState;
 
 enum PlayerState {
 	Gliding;

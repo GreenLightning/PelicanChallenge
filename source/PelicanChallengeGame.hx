@@ -1,6 +1,7 @@
 import flash.Lib;
 import flixel.FlxGame;
 import flixel.FlxState;
+import states.PlayState;
 
 class PelicanChallengeGame extends FlxGame {
 	
