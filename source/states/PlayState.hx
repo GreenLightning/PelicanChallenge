@@ -11,6 +11,7 @@ import sprites.FishGroup;
 import sprites.JellyfishGroup;
 import sprites.Player;
 import sprites.UI;
+import sprites.CloudGroup;
 
 class PlayState extends FlxState {
 
@@ -22,6 +23,8 @@ class PlayState extends FlxState {
 	override public function create():Void {
 		super.create();
 		add(new World());
+
+		add(new CloudGroup(this));
 
 		fish = new FishGroup(this);
 		add(fish);
