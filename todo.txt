@@ -1,4 +1,7 @@
-- pickup
+- collision detection
+- sounds
+- spawn system
+- height control
 - score
 - menu
 - clouds?
