@@ -4,8 +4,8 @@ import flixel.FlxState;
 
 class PelicanChallengeGame extends FlxGame {
 	
-	var gameWidth:Int = 640;
-	var gameHeight:Int = 480;
+	var gameWidth:Int = 960;
+	var gameHeight:Int = 640;
 	var initialState:Class<FlxState> = PlayState;
 	var zoom:Float = -1;
 	var framerate:Int = 60;
