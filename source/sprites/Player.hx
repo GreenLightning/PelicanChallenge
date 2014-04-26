@@ -32,7 +32,7 @@ class Player extends FlxSprite {
 	public function new(parent:PlayState) {
 		super();
 		this.parent = parent;
-		loadGraphic("graphics/pelican.png", true, false, 32, 32);
+		loadGraphic("graphics/pelican.png", true, 32, 32);
 		animation.add("glide-right", [1, 2, 3], 5, true);
 		animation.add("glide-left", [5, 6, 7], 5, true);
 		animation.add("dive-right", [0]);

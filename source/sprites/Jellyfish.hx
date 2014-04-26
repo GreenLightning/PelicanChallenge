@@ -14,7 +14,7 @@ class Jellyfish extends FlxSprite {
 		super();
 		this.group = group;
 		loadGraphic("graphics/jellyfish.png");
-		FlxTimer.start(10, remove);
+		new FlxTimer(10, remove);
 	}
 
 	private function remove(timer:FlxTimer):Void {

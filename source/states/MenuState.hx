@@ -16,7 +16,7 @@ class MenuState extends FlxState {
 		title.y = FlxG.height * 0.75 - title.size;
 		add(title);
 		var pelican = new FlxSprite();
-		pelican.loadGraphic("graphics/pelican.png", true, false, 32, 32);
+		pelican.loadGraphic("graphics/pelican.png", true, 32, 32);
 		pelican.animation.add("wait", [2]);
 		pelican.animation.add("fly", [2, 3, 1], 5, true);
 		pelican.animation.play("wait");

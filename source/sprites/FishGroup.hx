@@ -21,7 +21,7 @@ class FishGroup extends FlxGroup {
 		if (countLiving() < 30) {
 			spawnGroup();
 		}
-		FlxTimer.start(FlxRandom.floatRanged(1, 4), spawn);
+		new FlxTimer(FlxRandom.floatRanged(1, 4), spawn);
 	}
 
 	private function spawnGroup():Void {

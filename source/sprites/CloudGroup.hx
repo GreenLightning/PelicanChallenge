@@ -21,7 +21,7 @@ class CloudGroup extends FlxGroup {
 		for(i in 0 ... 2) {
 			add(new Cloud(this));
 		}
-		FlxTimer.start(FlxRandom.floatRanged(3, 8), spawn);
+		new FlxTimer(FlxRandom.floatRanged(3, 8), spawn);
 	}
 
 }

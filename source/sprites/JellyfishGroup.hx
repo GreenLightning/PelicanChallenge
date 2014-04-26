@@ -14,7 +14,7 @@ class JellyfishGroup extends FlxGroup {
 	public function new(parent:PlayState) {
 		super();
 		this.parent = parent;
-		FlxTimer.start(FlxRandom.floatRanged(3, 10), spawn);
+		new FlxTimer(FlxRandom.floatRanged(3, 10), spawn);
 	}
 
 	private function spawn(timer:FlxTimer):Void {
@@ -24,7 +24,7 @@ class JellyfishGroup extends FlxGroup {
 			jelly.y = FlxRandom.floatRanged(FlxG.height / 2, FlxG.height);
 			add(jelly);
 		}
-		FlxTimer.start(FlxRandom.floatRanged(3, 10), spawn);
+		new FlxTimer(FlxRandom.floatRanged(3, 10), spawn);
 	}
 
 	override public function update():Void {

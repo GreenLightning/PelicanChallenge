@@ -12,7 +12,7 @@ class Fish extends FlxSprite {
 	public function new(group:FlxGroup, xvel:Float, yvel:Float) {
 		super();
 		this.group = group;
-		loadGraphic("graphics/fish.png", true, false, 32, 32);
+		loadGraphic("graphics/fish.png", true, 32, 32);
 		animation.add("right", [0]);
 		animation.add("left", [1]);
 		velocity.x = xvel + FlxRandom.floatRanged(-2, 2);

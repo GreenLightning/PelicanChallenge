@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-
 	<!------------------------------APPLICATION SETTINGS---------------------------->
 
 	<app title="Pelican Challenge" file="PelicanChallenge" main="PelicanChallenge" version="0.2" company="Green Lightning" />
-
-	<!--The swf version should be at least 11.2 without FLX_NO_MOUSE_ADVANCED -->
-	<set name="SWF_VERSION" value="11.2" />
+	<set name="SWF_VERSION" value="11.8" />
 
 	<!--------------------------------WINDOW SETTINGS------------------------------->
 
@@ -22,7 +19,6 @@
 	
 	<!--------------------------------LIBRARIES------------------------------------->
 	
-	<haxelib name="openfl" />
 	<haxelib name="flixel"/>
 	<!--<haxelib name="flixel-addons" />-->
 	<!--<haxelib name="flixel-ui"/>-->
