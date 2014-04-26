@@ -1,4 +1,5 @@
 import flixel.FlxG;
+import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.util.FlxRandom;
 import flixel.util.FlxTimer;
@@ -27,7 +28,11 @@ class FishGroup extends FlxGroup {
 
 	override public function update():Void {
 		super.update();
-		FlxG.overlap(parent.player, this, onOverlap);
+		FlxG.overlap(parent.player, this, onOverlap, testOverlap);
+	}
+
+	private function testOverlap(sprite1:FlxSprite, sprite2:FlxSprite):Bool {
+		return FlxG.pixelPerfectOverlap(sprite1, sprite2);
 	}
 
 	private function onOverlap(player:Player, fish:Fish) {
