@@ -11,10 +11,12 @@ class FishGroup extends FlxGroup {
 	public function new(parent:PlayState) {
 		super();
 		this.parent = parent;
-		FlxTimer.start(0.5, spawn);	
+		spawn();
 	}
 
-	private function spawn(timer:FlxTimer):Void {
+	private function spawn(?timer:FlxTimer):Void {
+		var start = FlxRandom.floatRanged(0, FlxG.width);
+		var end = start + FlxRandom.sign() * FlxRandom.floatRanged(FlxG.width / 4, FlxG.width);
 		makeFish(FlxRandom.floatRanged(0, FlxG.width), FlxRandom.floatRanged(FlxG.height / 2, FlxG.height));
 		FlxTimer.start(FlxRandom.floatRanged(0.5, 1.5), spawn);
 	}

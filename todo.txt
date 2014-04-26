@@ -1,5 +1,7 @@
-- sounds
 - spawn system
+- jellyfish
+- different fish
+- sounds
 - score
 - menu
 - clouds
