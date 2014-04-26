@@ -1,13 +1,18 @@
 import flash.Lib;
 import flixel.FlxGame;
 import flixel.FlxState;
+import states.MenuState;
 import states.PlayState;
 
 class PelicanChallengeGame extends FlxGame {
 	
 	var gameWidth:Int = 960;
 	var gameHeight:Int = 640;
-	var initialState:Class<FlxState> = PlayState;
+	#if debug
+		var initialState:Class<FlxState> = PlayState;
+	#else
+		var initialState:Class<FlxState> = MenuState;
+	#end
 	var zoom:Float = -1;
 	var framerate:Int = 60;
 	var skipSplash:Bool = true;

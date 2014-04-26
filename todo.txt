@@ -1,6 +1,7 @@
-- menu
 - score
 - bigger fish
 - clouds
 - splashes
 - bubbles
+- menu animation
+- music
