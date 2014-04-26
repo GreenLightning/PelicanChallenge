@@ -60,15 +60,12 @@ class Player extends FlxSprite {
 					velocity.y = 0;
 					acceleration.y = DIVE_ACCELERATION;
 				}
-				if (y < 20) {
-					y = 20;
-				}
 				if (FlxG.keys.pressed.UP) {
-					velocity.y = -VERTICAL_SPEED;
+					velocity.y = (y < 20) ? 20 : -VERTICAL_SPEED;
 				} else if (FlxG.keys.pressed.DOWN) {
 					velocity.y = VERTICAL_SPEED;
 				} else {
-					velocity.y = 0;
+					velocity.y = (y < 20) ? 20 : 0;
 				}
 			case DiveStart:
 				if (y + height / 2 > FlxG.height / 2) {

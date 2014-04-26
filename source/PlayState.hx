@@ -8,6 +8,7 @@ import flixel.util.FlxMath;
 class PlayState extends FlxState {
 
 	public var fish:FishGroup;
+	public var jellyfish:JellyfishGroup;
 	public var player:Player;
 	
 	override public function create():Void {
@@ -16,6 +17,9 @@ class PlayState extends FlxState {
 
 		fish = new FishGroup(this);
 		add(fish);
+
+		jellyfish = new JellyfishGroup(this);
+		add(jellyfish);
 
 		player = new Player(this);
 		add(player);
