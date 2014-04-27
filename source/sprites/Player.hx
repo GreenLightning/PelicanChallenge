@@ -42,7 +42,7 @@ class Player extends FlxSprite {
 		y = 160 - height / 2;
 		velocity.x = 50;
 		maxVelocity.x = 600;
-		maxVelocity.y = 600;
+		maxVelocity.y = 2000;
 		eatSound = FlxG.sound.load("sounds/eat.wav");
 		hitSound = FlxG.sound.load("sounds/hit.wav");
 		splashSound = FlxG.sound.load("sounds/splash.wav");
@@ -76,7 +76,7 @@ class Player extends FlxSprite {
 	private function applyState():Void {
 		switch (state) {
 			case Gliding:
-				if (FlxG.keys.justPressed.SPACE || y + height > FlxG.height / 2 - 20) {
+				if (FlxG.keys.justPressed.SPACE || y + height > FlxG.height / 2 - 30) {
 					state = DiveStart;
 					velocity.y = 0;
 					acceleration.y = DIVE_ACCELERATION;
@@ -96,13 +96,22 @@ class Player extends FlxSprite {
 					acceleration.y = -DIVE_ACCELERATION;
 				}
 			case DiveUnderWater:
-				if(y + height / 2 < FlxG.height / 2) {
+				if(y + height / 2 <= FlxG.height / 2) {
 					splashSound.play(true);
 					parent.splash.add(new Splash(parent, x));
 					state = DiveEnd;
 					acceleration.y = DIVE_ACCELERATION;
 				}
 			case DiveEnd:
+				if (y < 30) {
+					acceleration.y = 3 * DIVE_ACCELERATION;
+				}
+				if (y < 20) {
+					acceleration.y = 9 * DIVE_ACCELERATION;
+				}
+				if (y < 10) {
+					acceleration.y = 27 * DIVE_ACCELERATION;
+				}
 				if (velocity.y >= 0) {
 					state = Gliding;
 					angle = 0;
@@ -132,7 +141,7 @@ class Player extends FlxSprite {
 		if (x + width / 2 > FlxG.width) {
 			x -= FlxG.width;
 		}
-		if (x - width / 2 < 0) {
+		if (x + width / 2 < 0) {
 			x += FlxG.width;
 		}
 	}
