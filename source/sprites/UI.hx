@@ -105,13 +105,13 @@ class UI extends FlxGroup {
 	}
 
 	private function initFishScoreText():Void {
-		fishScoreText = new FlxText(FlxG.width, FlxG.height * 0.9, FlxG.width / 2, "+1", 48);
+		fishScoreText = new FlxText(FlxG.width, FlxG.height * 0.9, FlxG.width / 2, "+1 point", 48);
 		fishScoreText.alignment = "center";
 		add(fishScoreText);
 	}
 
 	private function initBigFishText():Void {
-		bigFishScoreText = new FlxText(FlxG.width / 2 + FlxG.width, FlxG.height * 0.9, FlxG.width / 2, "+2", 48);
+		bigFishScoreText = new FlxText(FlxG.width / 2 + FlxG.width, FlxG.height * 0.9, FlxG.width / 2, "+2 points", 48);
 		bigFishScoreText.alignment = "center";
 		add(bigFishScoreText);
 	}
@@ -155,13 +155,13 @@ class UI extends FlxGroup {
 	}
 
 	private function initJellyfishText():Void {
-		jellyfishText = new FlxText(FlxG.width, FlxG.height * 0.9, FlxG.width / 2, "-5", 48);
+		jellyfishText = new FlxText(FlxG.width, FlxG.height * 0.9, FlxG.width / 2, "-5 sec.", 48);
 		jellyfishText.alignment = "center";
 		add(jellyfishText);
 	}
 
 	private function initTimeFishText():Void {
-		timeFishText = new FlxText(FlxG.width / 2 + FlxG.width, FlxG.height * 0.9, FlxG.width / 2, "+5", 48);
+		timeFishText = new FlxText(FlxG.width / 2 + FlxG.width, FlxG.height * 0.9, FlxG.width / 2, "+5 sec.", 48);
 		timeFishText.alignment = "center";
 		add(timeFishText);
 	}
