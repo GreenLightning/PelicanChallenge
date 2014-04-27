@@ -54,7 +54,7 @@ class PlayState extends FlxState {
 		player = new Player(this);
 		add(player);
 
-		ui = new UI(this);
+		ui = new UI(this, tutorialState != OFF);
 		add(ui);
 
 		applyTutorialState();
