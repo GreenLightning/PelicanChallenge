@@ -35,9 +35,9 @@ class MenuState extends FlxState {
 		pelican.x = FlxG.width * 0.75;
 		pelican.y = FlxG.height * 0.65;
 		add(pelican);
-		/*var tutorial = new FlxText(10, FlxG.height, Std.int(FlxG.width / 2 - 10), "T for TUTORIAL", 24);
+		var tutorial = new FlxText(10, FlxG.height, Std.int(FlxG.width / 2 - 10), "T for TUTORIAL", 24);
 		add(tutorial);
-		FlxTween.tween(tutorial, { y:(FlxG.height - 40) }, 0.4, { startDelay:0.5, ease:FlxEase.quadOut });*/
+		FlxTween.tween(tutorial, { y:(FlxG.height - 40) }, 0.4, { startDelay:0.5, ease:FlxEase.quadOut });
 		var play = new FlxText(FlxG.width / 2, FlxG.height, Std.int(FlxG.width / 2 - 10), "ENTER to PLAY", 24);
 		play.alignment = "right";
 		add(play);
@@ -46,7 +46,9 @@ class MenuState extends FlxState {
 
 	override public function update():Void {
 		super.update();
-		if (FlxG.keys.justPressed.ENTER) {
+		if (FlxG.keys.justPressed.T) {
+			FlxG.switchState(new PlayState(world.getData(worldData), true));
+		} else if (FlxG.keys.justPressed.ENTER) {
 			FlxG.switchState(new PlayState(world.getData(worldData)));
 		}
 	}

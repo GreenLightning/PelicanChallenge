@@ -14,6 +14,9 @@ class FishGroup extends FlxGroup {
 	public function new(parent:PlayState) {
 		super();
 		this.parent = parent;
+	}
+
+	public function startSpawning():Void {
 		spawnNormal();
 		spawnBig();
 		spawnTime();

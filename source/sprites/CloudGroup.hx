@@ -14,7 +14,7 @@ class CloudGroup extends FlxTypedGroup<Cloud> {
 		if (data != null) {
 			setData(data);
 		} else {
-			spawnClouds();
+			spawnClouds(5);
 		}
 		startTimer();
 	}
@@ -35,20 +35,22 @@ class CloudGroup extends FlxTypedGroup<Cloud> {
 	}
 
 	private function spawn(?timer:FlxTimer):Void {
-		spawnClouds();
+		spawnClouds(2);
 		if (active) {
 			startTimer();
 		}
 	}
 
-	private function spawnClouds():Void {
-		for(i in 0 ... 2) {
-			add(new Cloud(this));
+	private function spawnClouds(count:Int):Void {
+		if (count > 0) {
+			for(i in 0 ... count - 1) {
+				add(new Cloud(this));
+			}
 		}
 	}
 
 	private function startTimer():Void {
-		new FlxTimer(FlxRandom.floatRanged(3, 8), spawn);
+		new FlxTimer(FlxRandom.floatRanged(2.5, 7.5), spawn);
 	}
 
 }

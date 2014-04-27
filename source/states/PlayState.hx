@@ -14,7 +14,16 @@ import sprites.Player;
 import sprites.UI;
 import sprites.CloudGroup;
 
+enum TutorialState {
+	OFF;
+	MOVEMENT;
+	FISH_SCORE;
+	FISH_TIME;
+}
+
 class PlayState extends FlxState {
+
+	public var tutorialState:TutorialState;
 
 	public var fish:FishGroup;
 	public var jellyfish:JellyfishGroup;
@@ -24,8 +33,9 @@ class PlayState extends FlxState {
 	private var worldData:WorldData;
 	private var world:World;
 
-	public function new(?worldData:WorldData) {
+	public function new(?worldData:WorldData, tutorial:Bool = false) {
 		super();
+		this.tutorialState = (tutorial) ? MOVEMENT : OFF;
 		this.worldData = worldData;
 	}
 	
@@ -46,12 +56,37 @@ class PlayState extends FlxState {
 
 		ui = new UI(this);
 		add(ui);
+
+		applyTutorialState();
 	}
 
 	override public function update():Void {
 		super.update();
 		if (player.time <= 0) {
 			FlxG.switchState(new GameOverState(world.getData(worldData), player.score));
+		}
+		if (FlxG.keys.justPressed.ENTER) {
+			var previous = tutorialState;
+			switch (tutorialState) {
+				case MOVEMENT:
+					tutorialState = FISH_SCORE;
+				case FISH_SCORE:
+					tutorialState = FISH_TIME;
+				case FISH_TIME:
+					tutorialState = OFF;
+				case OFF:
+			}
+			if (tutorialState != previous) {
+				applyTutorialState();
+			}
+		}
+	}
+
+	private function applyTutorialState():Void {
+		ui.applyTutorialState(tutorialState);
+		if (tutorialState == OFF) {
+			fish.startSpawning();
+			jellyfish.startSpawning();
 		}
 	}
 	

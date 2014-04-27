@@ -14,6 +14,9 @@ class JellyfishGroup extends FlxGroup {
 	public function new(parent:PlayState) {
 		super();
 		this.parent = parent;
+	}
+
+	public function startSpawning():Void {
 		new FlxTimer(FlxRandom.floatRanged(3, 10), spawn);
 	}
 

@@ -58,7 +58,9 @@ class Player extends FlxSprite {
 	}
 
 	private function updateTime():Void {
-		time -= FlxG.elapsed;
+		if (parent.tutorialState == OFF) {
+			time -= FlxG.elapsed;
+		}
 	}
 
 	private function move():Void {
@@ -80,11 +82,11 @@ class Player extends FlxSprite {
 					acceleration.y = DIVE_ACCELERATION;
 				}
 				if (FlxG.keys.pressed.UP) {
-					velocity.y = (y < 30) ? 30 : -VERTICAL_SPEED;
+					velocity.y = (y < 30) ? 60 : -VERTICAL_SPEED;
 				} else if (FlxG.keys.pressed.DOWN) {
 					velocity.y = VERTICAL_SPEED;
 				} else {
-					velocity.y = (y < 30) ? 30 : 0;
+					velocity.y = (y < 30) ? 60 : 0;
 				}
 			case DiveStart:
 				if (y + height / 2 > FlxG.height / 2) {
@@ -135,12 +137,16 @@ class Player extends FlxSprite {
 
 	public function eat(fish:Fish):Void {
 		eatSound.play();
-		fish.applyBonus(this);
+		if (parent.tutorialState == OFF) {
+			fish.applyBonus(this);
+		}
 	}
 
 	public function hit(jelly:Jellyfish):Void {
 		hitSound.play();
-		jelly.applyMalus(this);
+		if (parent.tutorialState == OFF) {
+			jelly.applyMalus(this);
+		}
 	}
 
 }
