@@ -91,12 +91,14 @@ class Player extends FlxSprite {
 			case DiveStart:
 				if (y + height / 2 > FlxG.height / 2) {
 					splashSound.play(true);
+					parent.splash.add(new Splash(parent, x));
 					state = DiveUnderWater;
 					acceleration.y = -DIVE_ACCELERATION;
 				}
 			case DiveUnderWater:
 				if(y + height / 2 < FlxG.height / 2) {
 					splashSound.play(true);
+					parent.splash.add(new Splash(parent, x));
 					state = DiveEnd;
 					acceleration.y = DIVE_ACCELERATION;
 				}

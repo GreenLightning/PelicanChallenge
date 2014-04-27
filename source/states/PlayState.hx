@@ -3,6 +3,7 @@ package states;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxMath;
@@ -25,6 +26,7 @@ class PlayState extends FlxState {
 
 	public var tutorialState:TutorialState;
 
+	public var splash:FlxGroup;
 	public var fish:FishGroup;
 	public var jellyfish:JellyfishGroup;
 	public var player:Player;
@@ -44,6 +46,9 @@ class PlayState extends FlxState {
 		world = new World(worldData);
 		world.hideSun();
 		add(world);
+
+		splash = new FlxGroup();
+		add(splash);
 
 		fish = new FishGroup(this);
 		add(fish);
