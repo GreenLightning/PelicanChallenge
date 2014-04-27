@@ -16,7 +16,7 @@ class GameOverState extends FlxState {
 	private var world:World;
 	private var score:Int;
 
-	private var informations = ["@MGreenLightning", "greenlightning.eu", "Ludum Dare rocks!"];
+	private var informations = ["@MGreenLightning", "Thanks for playing!", "greenlightning.eu", "Ludum Dare rocks!"];
 	private var infoIndex = 0;
 	private var infoText:FlxText;
 
