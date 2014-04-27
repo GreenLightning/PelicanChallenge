@@ -8,6 +8,7 @@ import sprites.World;
 import sprites.WorldData;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
+import flixel.util.FlxTimer;
 
 class MenuState extends FlxState {
 
@@ -35,9 +36,11 @@ class MenuState extends FlxState {
 		pelican.x = FlxG.width * 0.75;
 		pelican.y = FlxG.height * 0.65;
 		add(pelican);
+
 		var tutorial = new FlxText(10, FlxG.height, Std.int(FlxG.width / 2 - 10), "T for TUTORIAL", 24);
 		add(tutorial);
 		FlxTween.tween(tutorial, { y:(FlxG.height - 40) }, 0.4, { startDelay:0.5, ease:FlxEase.quadOut });
+
 		var play = new FlxText(FlxG.width / 2, FlxG.height, Std.int(FlxG.width / 2 - 10), "ENTER to PLAY", 24);
 		play.alignment = "right";
 		add(play);
