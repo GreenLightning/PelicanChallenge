@@ -10,10 +10,12 @@ import states.PlayState;
 class FishGroup extends FlxGroup {
 
 	private var parent:PlayState;
+	private var toSpawn:Array<Fish>;
 
 	public function new(parent:PlayState) {
 		super();
 		this.parent = parent;
+		toSpawn = [];
 	}
 
 	public function startSpawning():Void {
@@ -23,7 +25,7 @@ class FishGroup extends FlxGroup {
 	}
 
 	private function spawnNormal(?timer:FlxTimer):Void {
-		if (countLiving() < 30) {
+		if (countLiving() + toSpawn.length < 30) {
 			spawnGroup();
 		}
 		new FlxTimer(FlxRandom.floatRanged(1, 4), spawnNormal);
@@ -50,7 +52,7 @@ class FishGroup extends FlxGroup {
 		var fish = new Fish(this, xvel, yvel);
 		fish.x = x;
 		fish.y = y;
-		add(fish);
+		toSpawn.push(fish);
 	}
 
 	private function spawnBig(?timer:FlxTimer):Void {
@@ -71,6 +73,9 @@ class FishGroup extends FlxGroup {
 
 	override public function update():Void {
 		super.update();
+		if (toSpawn.length > 0) {
+			add(toSpawn.shift());
+		}
 		FlxG.overlap(parent.player, this, onOverlap, testOverlap);
 	}
 
