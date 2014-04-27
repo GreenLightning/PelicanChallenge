@@ -12,6 +12,7 @@ class World extends FlxGroup {
 	private var sun:FlxSprite;
 	private var clouds:CloudGroup;
 	private var water:FlxSprite;
+	private var bubbles:BubbleGroup;
 
 	public function new(?data:WorldData) {
 		super();
@@ -26,6 +27,8 @@ class World extends FlxGroup {
 		water = new FlxSprite();
 		water.loadGraphic("graphics/world_water.png");
 		add(water);
+		bubbles = new BubbleGroup();
+		add(bubbles);
 
 		sun.angularVelocity = 10;
 
@@ -53,6 +56,7 @@ class World extends FlxGroup {
 		sun.alpha = (sunVisible) ? 1 : 0;
 		sun.angle = data.sunAngle;
 		clouds.setData(data.clouds);
+		bubbles.setData(data.bubbles);
 	}
 
 	public function getData(?data:WorldData):WorldData {
@@ -62,6 +66,7 @@ class World extends FlxGroup {
 		data.sunVisible = sunVisible;
 		data.sunAngle = sun.angle;
 		data.clouds = clouds.getData();
+		data.bubbles = bubbles.getData();
 		return data;
 	}
 
