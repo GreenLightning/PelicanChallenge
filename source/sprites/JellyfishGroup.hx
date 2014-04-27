@@ -40,7 +40,7 @@ class JellyfishGroup extends FlxGroup {
 	}
 
 	private function onOverlap(player:Player, jelly:Jellyfish) {
-		player.hit(jelly);
+		player.jellyfish();
 		jelly.kill();
 		remove(jelly, true);
 	}

@@ -24,8 +24,8 @@ class Fish extends FlxSprite {
 		animation.add("left", [4, 5, 6, 7, 6, 5, 4], 3);
 	}
 
-	public function applyBonus(player:Player):Void {
-		player.score++;
+	public function hit(player:Player):Void {
+		player.fish();
 	}
 
 	override public function update():Void {

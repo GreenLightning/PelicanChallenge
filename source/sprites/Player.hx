@@ -25,8 +25,10 @@ class Player extends FlxSprite {
 	private var parent:PlayState;
 	private var state:PlayerState = Gliding;
 
-	private var eatSound:FlxSound;
-	private var hitSound:FlxSound;
+	public var fishSound:FlxSound;
+	public var bigFishSound:FlxSound;
+	public var timeFishSound:FlxSound;
+	public var jellyfishSound:FlxSound;
 	private var splashSound:FlxSound;
 
 	public function new(parent:PlayState) {
@@ -43,8 +45,10 @@ class Player extends FlxSprite {
 		velocity.x = 50;
 		maxVelocity.x = 600;
 		maxVelocity.y = 2000;
-		eatSound = FlxG.sound.load("sounds/eat.wav");
-		hitSound = FlxG.sound.load("sounds/hit.wav");
+		fishSound = FlxG.sound.load("sounds/fish.wav");
+		bigFishSound = FlxG.sound.load("sounds/fish_big.wav");
+		timeFishSound = FlxG.sound.load("sounds/fish_time.wav");
+		jellyfishSound = FlxG.sound.load("sounds/jellyfish.wav");
 		splashSound = FlxG.sound.load("sounds/splash.wav");
 	}
 
@@ -146,18 +150,24 @@ class Player extends FlxSprite {
 		}
 	}
 
-	public function eat(fish:Fish):Void {
-		eatSound.play();
-		if (parent.tutorialState == OFF) {
-			fish.applyBonus(this);
-		}
+	public function fish():Void {
+		fishSound.play();
+		score++;
 	}
 
-	public function hit(jelly:Jellyfish):Void {
-		hitSound.play();
-		if (parent.tutorialState == OFF) {
-			jelly.applyMalus(this);
-		}
+	public function bigFish():Void {
+		bigFishSound.play();
+		score += 2;
+	}
+
+	public function timeFish():Void {
+		timeFishSound.play();
+		time += 5;
+	}
+
+	public function jellyfish():Void {
+		jellyfishSound.play();
+		time -= 5;
 	}
 
 }

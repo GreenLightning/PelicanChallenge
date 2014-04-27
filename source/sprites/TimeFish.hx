@@ -17,8 +17,8 @@ class TimeFish extends Fish {
 		animation.add("left", [3, 4, 3, 5], 5);
 	}
 
-	override function applyBonus(player:Player):Void {
-		player.time += 5;
+	override function hit(player:Player):Void {
+		player.timeFish();
 	}
 
 }

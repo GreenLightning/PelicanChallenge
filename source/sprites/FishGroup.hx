@@ -84,7 +84,7 @@ class FishGroup extends FlxGroup {
 	}
 
 	private function onOverlap(player:Player, fish:Fish) {
-		player.eat(fish);
+		fish.hit(player);
 		fish.kill();
 		remove(fish, true);
 	}

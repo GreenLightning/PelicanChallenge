@@ -17,8 +17,8 @@ class BigFish extends Fish {
 		animation.add("left", [4, 5, 6, 7, 6, 5, 4], 9);
 	}
 
-	override function applyBonus(player:Player):Void {
-		player.score += 2;
+	override function hit(player:Player):Void {
+		player.bigFish();
 	}
 
 }
