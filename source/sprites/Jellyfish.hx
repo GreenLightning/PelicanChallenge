@@ -13,7 +13,9 @@ class Jellyfish extends FlxSprite {
 	public function new(group:FlxGroup) {
 		super();
 		this.group = group;
-		loadGraphic("graphics/jellyfish.png");
+		loadGraphic("graphics/jellyfish.png", true, 32, 32);
+		animation.add("anim", [0,1,2,3,4,5,6], 10);
+		animation.play("anim");
 		new FlxTimer(10, remove);
 	}
 

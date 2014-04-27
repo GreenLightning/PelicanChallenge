@@ -13,6 +13,8 @@ class BigFish extends Fish {
 
 	override function loadFishGraphic():Void {
 		loadGraphic("graphics/fish_big.png", true, 64, 64);
+		animation.add("right", [0, 1, 2, 3, 2, 1, 0], 9);
+		animation.add("left", [4, 5, 6, 7, 6, 5, 4], 9);
 	}
 
 	override function applyBonus(player:Player):Void {

@@ -13,6 +13,8 @@ class TimeFish extends Fish {
 
 	override function loadFishGraphic():Void {
 		loadGraphic("graphics/fish_time.png", true, 32, 32);
+		animation.add("right", [0, 1, 0, 2], 5);
+		animation.add("left", [3, 4, 3, 5], 5);
 	}
 
 	override function applyBonus(player:Player):Void {

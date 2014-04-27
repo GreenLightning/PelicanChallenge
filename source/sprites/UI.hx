@@ -83,7 +83,7 @@ class UI extends FlxGroup {
 	private function initFish():Void {
 		fish = new FlxSprite();
 		fish.loadGraphic("graphics/fish.png", true, 32, 32);
-		fish.animation.add("anim", [0]);
+		fish.animation.add("anim", [0, 1, 2, 3, 2, 1, 0], 3);
 		fish.animation.play("anim");
 		fish.scale.x = FISH_SCALE;
 		fish.scale.y = FISH_SCALE;
@@ -95,12 +95,12 @@ class UI extends FlxGroup {
 	private function initBigFish():Void {
 		bigFish = new FlxSprite();
 		bigFish.loadGraphic("graphics/fish_big.png", true, 64, 64);
-		bigFish.animation.add("anim", [1]);
+		bigFish.animation.add("anim", [4, 5, 6, 7, 6, 5, 4], 9);
 		bigFish.animation.play("anim");
 		bigFish.scale.x = BIG_FISH_SCALE;
 		bigFish.scale.y = BIG_FISH_SCALE;
 		bigFish.x = FlxG.width * 0.75 + FlxG.width;
-		bigFish.y = FlxG.height * 0.675;
+		bigFish.y = FlxG.height * 0.70;
 		add(bigFish);
 	}
 
@@ -132,23 +132,25 @@ class UI extends FlxGroup {
 
 	private function initJellyfish():Void {
 		jellyfish = new FlxSprite();
-		jellyfish.loadGraphic("graphics/jellyfish.png");
+		jellyfish.loadGraphic("graphics/jellyfish.png", true, 32, 32);
+		jellyfish.animation.add("anim", [0, 1, 2, 3, 4, 5, 6], 10);
+		jellyfish.animation.play("anim");
 		jellyfish.scale.x = JELLYFISH_SCALE;
 		jellyfish.scale.y = JELLYFISH_SCALE;
 		jellyfish.x = FlxG.width * 0.25 + FlxG.width;
-		jellyfish.y = FlxG.height * 0.75;
+		jellyfish.y = FlxG.height * 0.725;
 		add(jellyfish);
 	}
 
 	private function initTimeFish():Void {
 		timeFish = new FlxSprite();
 		timeFish.loadGraphic("graphics/fish_time.png", true, 32, 32);
-		timeFish.animation.add("anim", [1]);
+		timeFish.animation.add("anim", [3, 4, 3, 5], 5);
 		timeFish.animation.play("anim");
 		timeFish.scale.x = TIME_FISH_SCALE;
 		timeFish.scale.y = TIME_FISH_SCALE;
 		timeFish.x = FlxG.width * 0.75 + FlxG.width;
-		timeFish.y = FlxG.height * 0.75;
+		timeFish.y = FlxG.height * 0.725;
 		add(timeFish);
 	}
 
