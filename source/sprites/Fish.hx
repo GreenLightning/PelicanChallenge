@@ -35,17 +35,19 @@ class Fish extends FlxSprite {
 	}
 
 	private function stayInTheWater():Void {
-		if (y < FlxG.height / 2 || y + height > FlxG.height) {
-			velocity.y = -velocity.y;
+		if (y < FlxG.height / 2) {
+			velocity.y = Math.abs(velocity.y);
+		} else if(y + height > FlxG.height) {
+			velocity.y = -Math.abs(velocity.y);
 		}
 	}
 
 	private function wrapAround():Void {
-		if (x + width / 2 > FlxG.width) {
-			x -= FlxG.width;
+		if (x > FlxG.width) {
+			x -= FlxG.width + width;
 		}
-		if (x - width / 2 < 0) {
-			x += FlxG.width;
+		if (x + width < 0) {
+			x += FlxG.width + width;
 		}
 	}
 
