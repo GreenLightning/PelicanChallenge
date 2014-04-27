@@ -6,15 +6,63 @@ import flixel.tweens.FlxTween;
 
 class World extends FlxGroup {
 
-	public function new() {
+	private var sunVisible:Bool = true;
+
+	private var sky:FlxSprite;
+	private var sun:FlxSprite;
+	private var clouds:CloudGroup;
+	private var water:FlxSprite;
+
+	public function new(?data:WorldData) {
 		super();
-		var bg = new FlxSprite();
-		bg.loadGraphic("graphics/world.png");
-		add(bg);
-		var overlay = new FlxSprite();
-		overlay.loadGraphic("graphics/title.png");
-		add(overlay);
-		FlxTween.tween(overlay, { alpha:0 }, 1);
+		sky = new FlxSprite();
+		sky.loadGraphic("graphics/world_sky.png");
+		add(sky);
+		sun = new FlxSprite();
+		sun.loadGraphic("graphics/world_sun.png");
+		add(sun);
+		clouds = new CloudGroup();
+		add(clouds);
+		water = new FlxSprite();
+		water.loadGraphic("graphics/world_water.png");
+		add(water);
+
+		sun.angularVelocity = 10;
+
+		if (data != null) {
+			setData(data);
+		}
+	}
+
+	public function hideSun() {
+		if (sunVisible) {
+			sunVisible = false;
+			FlxTween.tween(sun, { alpha:0 }, 1);
+		}
+	}
+
+	public function showSun() {
+		if (!sunVisible) {
+			sunVisible = true;
+			FlxTween.tween(sun, { alpha:1 }, 1);
+		}
+	}
+
+	public function setData(data:WorldData):Void {
+		sunVisible = data.sunVisible;
+		sun.alpha = (sunVisible) ? 1 : 0;
+		sun.angle = data.sunAngle;
+		clouds.setData(data.clouds);
+	}
+
+	public function getData(?data:WorldData):WorldData {
+		if (data == null) {
+			data = new WorldData();
+		}
+		data.sunVisible = sunVisible;
+		data.sunAngle = sun.angle;
+		data.clouds = clouds.getData();
+		return data;
 	}
 
 }

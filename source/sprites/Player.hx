@@ -140,6 +140,7 @@ class Player extends FlxSprite {
 
 	public function hit():Void {
 		hitSound.play();
+		time -= 5;
 	}
 
 }

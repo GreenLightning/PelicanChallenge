@@ -1,7 +1,6 @@
-- game over
-- tutorial
 - bigger fish
+- time fish
+- tutorial
 - splashes
 - bubbles
-- menu animation
 - music
