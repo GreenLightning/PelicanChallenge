@@ -133,14 +133,14 @@ class Player extends FlxSprite {
 		}
 	}
 
-	public function eat():Void {
+	public function eat(fish:Fish):Void {
 		eatSound.play();
-		score++;
+		fish.applyBonus(this);
 	}
 
-	public function hit():Void {
+	public function hit(jelly:Jellyfish):Void {
 		hitSound.play();
-		time -= 5;
+		jelly.applyMalus(this);
 	}
 
 }

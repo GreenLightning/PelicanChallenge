@@ -1,6 +1,3 @@
-- bigger fish
-- time fish
 - tutorial
 - splashes
 - bubbles
-- music

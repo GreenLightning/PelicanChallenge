@@ -22,4 +22,8 @@ class Jellyfish extends FlxSprite {
 		group.remove(this, true);
 	}
 
+	public function applyMalus(player:Player):Void {
+		player.time -= 5;
+	}
+
 }

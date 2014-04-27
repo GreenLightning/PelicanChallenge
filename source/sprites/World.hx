@@ -37,14 +37,14 @@ class World extends FlxGroup {
 	public function hideSun() {
 		if (sunVisible) {
 			sunVisible = false;
-			FlxTween.tween(sun, { alpha:0 }, 1);
+			FlxTween.tween(sun, { alpha:0 }, 3);
 		}
 	}
 
 	public function showSun() {
 		if (!sunVisible) {
 			sunVisible = true;
-			FlxTween.tween(sun, { alpha:1 }, 1);
+			FlxTween.tween(sun, { alpha:1 }, 3);
 		}
 	}
 

@@ -12,12 +12,20 @@ class Fish extends FlxSprite {
 	public function new(group:FlxGroup, xvel:Float, yvel:Float) {
 		super();
 		this.group = group;
-		loadGraphic("graphics/fish.png", true, 32, 32);
+		loadFishGraphic();
 		animation.add("right", [0]);
 		animation.add("left", [1]);
 		velocity.x = xvel + FlxRandom.floatRanged(-2, 2);
 		velocity.y = yvel + FlxRandom.floatRanged(-0.5, 0.5);
 		animation.play((velocity.x < 0) ? "left" : "right");
+	}
+
+	function loadFishGraphic():Void {
+		loadGraphic("graphics/fish.png", true, 32, 32);
+	}
+
+	public function applyBonus(player:Player):Void {
+		player.score++;
 	}
 
 	override public function update():Void {

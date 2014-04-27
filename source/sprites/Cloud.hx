@@ -18,19 +18,19 @@ class Cloud extends FlxSprite {
 			setData(data);
 		} else {
 			graphicIndex = FlxRandom.intRanged(0, 4);
+			loadGraphicIndex();
 			velocity.x = FlxRandom.sign() * FlxRandom.floatRanged(5, 20);
 			x = (velocity.x < 0) ? FlxG.width : -width;
 			y = FlxRandom.floatRanged(0, FlxG.height / 2 - height);
-			loadGraphicIndex();
 		}
 	}
 
 	public function setData(data:CloudData):Void {
 		graphicIndex = data.graphicIndex;
+		loadGraphicIndex();
 		velocity.x = data.velocityx;
 		x = data.x;
 		y = data.y;
-		loadGraphicIndex();
 	}
 
 	public function getData(?data:CloudData):CloudData {

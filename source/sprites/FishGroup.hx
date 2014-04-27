@@ -14,14 +14,16 @@ class FishGroup extends FlxGroup {
 	public function new(parent:PlayState) {
 		super();
 		this.parent = parent;
-		spawn();
+		spawnNormal();
+		spawnBig();
+		spawnTime();
 	}
 
-	private function spawn(?timer:FlxTimer):Void {
+	private function spawnNormal(?timer:FlxTimer):Void {
 		if (countLiving() < 30) {
 			spawnGroup();
 		}
-		new FlxTimer(FlxRandom.floatRanged(1, 4), spawn);
+		new FlxTimer(FlxRandom.floatRanged(1, 4), spawnNormal);
 	}
 
 	private function spawnGroup():Void {
@@ -48,6 +50,22 @@ class FishGroup extends FlxGroup {
 		add(fish);
 	}
 
+	private function spawnBig(?timer:FlxTimer):Void {
+		var fish = new BigFish(this, FlxRandom.floatRanged(-60, 60), FlxRandom.floatRanged(-8, 8));
+		fish.x = FlxRandom.floatRanged(0, FlxG.width);
+		fish.y = FlxRandom.floatRanged(FlxG.height * 0.6, FlxG.height);
+		add(fish);
+		new FlxTimer(FlxRandom.floatRanged(2, 18), spawnBig);
+	}
+
+	private function spawnTime(?timer:FlxTimer):Void {
+		var fish = new TimeFish(this, FlxRandom.floatRanged(-30, 30), FlxRandom.floatRanged(-10, 10));
+		fish.x = FlxRandom.floatRanged(0, FlxG.width);
+		fish.y = FlxRandom.floatRanged(FlxG.height * 0.75, FlxG.height);
+		add(fish);
+		new FlxTimer(FlxRandom.floatRanged(5, 25), spawnTime);
+	}
+
 	override public function update():Void {
 		super.update();
 		FlxG.overlap(parent.player, this, onOverlap, testOverlap);
@@ -58,7 +76,7 @@ class FishGroup extends FlxGroup {
 	}
 
 	private function onOverlap(player:Player, fish:Fish) {
-		player.eat();
+		player.eat(fish);
 		fish.kill();
 		remove(fish, true);
 	}
