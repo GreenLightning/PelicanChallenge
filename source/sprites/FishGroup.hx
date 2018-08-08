@@ -3,7 +3,7 @@ package sprites;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
-import flixel.util.FlxRandom;
+import flixel.math.FlxRandom;
 import flixel.util.FlxTimer;
 import states.PlayState;
 
@@ -28,17 +28,17 @@ class FishGroup extends FlxGroup {
 		if (countLiving() + toSpawn.length < 30) {
 			spawnGroup();
 		}
-		new FlxTimer(FlxRandom.floatRanged(1, 4), spawnNormal);
+		new FlxTimer().start(FlxG.random.float(1, 4), spawnNormal);
 	}
 
 	private function spawnGroup():Void {
-		var startX = FlxRandom.floatRanged(0, FlxG.width);
-		var endX = startX + FlxRandom.floatRanged(FlxG.width / 8, FlxG.width / 2);
+		var startX = FlxG.random.float(0, FlxG.width);
+		var endX = startX + FlxG.random.float(FlxG.width / 8, FlxG.width / 2);
 		var middleX = (startX + endX) / 2;
-		var upperY = FlxG.height / 2 + FlxRandom.floatRanged(0, FlxG.height * 0.2);
-		var lowerY = FlxG.height - FlxRandom.floatRanged(0, FlxG.height * 0.2);
-		var xvel = FlxRandom.floatRanged(-40, 40);
-		var yvel = FlxRandom.floatRanged(-5, 5);
+		var upperY = FlxG.height / 2 + FlxG.random.float(0, FlxG.height * 0.2);
+		var lowerY = FlxG.height - FlxG.random.float(0, FlxG.height * 0.2);
+		var xvel = FlxG.random.float(-40, 40);
+		var yvel = FlxG.random.float(-5, 5);
 		var xpos = startX;
 		while (xpos < endX) {
 			var posPercentage = (xpos - middleX) / (middleX - startX);
@@ -56,23 +56,23 @@ class FishGroup extends FlxGroup {
 	}
 
 	private function spawnBig(?timer:FlxTimer):Void {
-		var fish = new BigFish(this, FlxRandom.floatRanged(-60, 60), FlxRandom.floatRanged(-8, 8));
-		fish.x = FlxRandom.floatRanged(0, FlxG.width);
-		fish.y = FlxRandom.floatRanged(FlxG.height * 0.6, FlxG.height);
+		var fish = new BigFish(this, FlxG.random.float(-60, 60), FlxG.random.float(-8, 8));
+		fish.x = FlxG.random.float(0, FlxG.width);
+		fish.y = FlxG.random.float(FlxG.height * 0.6, FlxG.height);
 		add(fish);
-		new FlxTimer(FlxRandom.floatRanged(2, 18), spawnBig);
+		new FlxTimer().start(FlxG.random.float(2, 18), spawnBig);
 	}
 
 	private function spawnTime(?timer:FlxTimer):Void {
-		var fish = new TimeFish(this, FlxRandom.floatRanged(-30, 30), FlxRandom.floatRanged(-10, 10));
-		fish.x = FlxRandom.floatRanged(0, FlxG.width);
-		fish.y = FlxRandom.floatRanged(FlxG.height * 0.75, FlxG.height);
+		var fish = new TimeFish(this, FlxG.random.float(-30, 30), FlxG.random.float(-10, 10));
+		fish.x = FlxG.random.float(0, FlxG.width);
+		fish.y = FlxG.random.float(FlxG.height * 0.75, FlxG.height);
 		add(fish);
-		new FlxTimer(FlxRandom.floatRanged(5, 25), spawnTime);
+		new FlxTimer().start(FlxG.random.float(5.0, 25.0), spawnTime);
 	}
 
-	override public function update():Void {
-		super.update();
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
 		if (toSpawn.length > 0) {
 			add(toSpawn.shift());
 		}

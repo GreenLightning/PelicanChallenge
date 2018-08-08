@@ -47,8 +47,8 @@ class MenuState extends FlxState {
 		FlxTween.tween(play, { y:(FlxG.height - 40) }, 0.4, { startDelay:0.7, ease:FlxEase.quadOut });
 	}
 
-	override public function update():Void {
-		super.update();
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
 		if (FlxG.keys.justPressed.T) {
 			FlxG.switchState(new PlayState(world.getData(worldData), true));
 		} else if (FlxG.keys.justPressed.ENTER) {

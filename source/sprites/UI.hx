@@ -231,8 +231,8 @@ class UI extends FlxGroup {
 		FlxTween.tween(time, { alpha:1 }, 0.5);
 	}
 
-	override public function update():Void {
-		super.update();
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
 		score.text = "Score: " + parent.player.score;
 		time.text = "Time: " + Std.int(parent.player.time);
 	}

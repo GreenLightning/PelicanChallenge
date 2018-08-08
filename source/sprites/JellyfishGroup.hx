@@ -3,7 +3,7 @@ package sprites;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
-import flixel.util.FlxRandom;
+import flixel.math.FlxRandom;
 import flixel.util.FlxTimer;
 import states.PlayState;
 
@@ -17,21 +17,21 @@ class JellyfishGroup extends FlxGroup {
 	}
 
 	public function startSpawning():Void {
-		new FlxTimer(FlxRandom.floatRanged(3, 10), spawn);
+		new FlxTimer().start(FlxG.random.float(3, 10), spawn);
 	}
 
 	private function spawn(timer:FlxTimer):Void {
 		if (countLiving() < 4) {
 			var jelly = new Jellyfish(this);
-			jelly.x = FlxRandom.floatRanged(0, FlxG.width);
-			jelly.y = FlxRandom.floatRanged(FlxG.height / 2, FlxG.height);
+			jelly.x = FlxG.random.float(0, FlxG.width);
+			jelly.y = FlxG.random.float(FlxG.height / 2, FlxG.height);
 			add(jelly);
 		}
-		new FlxTimer(FlxRandom.floatRanged(3, 10), spawn);
+		new FlxTimer().start(FlxG.random.float(3, 10), spawn);
 	}
 
-	override public function update():Void {
-		super.update();
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
 		FlxG.overlap(parent.player, this, onOverlap, testOverlap);
 	}
 

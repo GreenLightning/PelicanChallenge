@@ -2,8 +2,8 @@ package sprites;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.group.FlxTypedGroup;
-import flixel.util.FlxRandom;
+import flixel.group.FlxGroup;
+import flixel.math.FlxRandom;
 import flixel.util.FlxTimer;
 
 class Cloud extends FlxSprite {
@@ -17,11 +17,11 @@ class Cloud extends FlxSprite {
 		if (data != null) {
 			setData(data);
 		} else {
-			graphicIndex = FlxRandom.intRanged(0, 4);
+			graphicIndex = FlxG.random.int(0, 4);
 			loadGraphicIndex();
-			velocity.x = FlxRandom.sign() * FlxRandom.floatRanged(5, 20);
+			velocity.x = FlxG.random.sign() * FlxG.random.float(5, 20);
 			x = (velocity.x < 0) ? FlxG.width : -width;
-			y = FlxRandom.floatRanged(0, FlxG.height / 2 - height);
+			y = FlxG.random.float(0, FlxG.height / 2 - height);
 		}
 	}
 
@@ -48,8 +48,8 @@ class Cloud extends FlxSprite {
 		loadGraphic("graphics/cloud_" + graphicIndex + ".png");
 	}
 
-	override public function update():Void {
-		super.update();
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
 		if(x + width < 0 || x > FlxG.width) {
 			kill();
 			group.remove(this, true);

@@ -2,8 +2,8 @@ package sprites;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.group.FlxTypedGroup;
-import flixel.util.FlxRandom;
+import flixel.group.FlxGroup;
+import flixel.math.FlxRandom;
 import flixel.util.FlxTimer;
 
 class Bubble extends FlxSprite {
@@ -17,8 +17,8 @@ class Bubble extends FlxSprite {
 		if (data != null) {
 			setData(data);
 		} else {
-			velocity.y = FlxRandom.floatRanged(-5, -40);
-			x = FlxRandom.floatRanged(0, FlxG.width);
+			velocity.y = FlxG.random.float(-5, -40);
+			x = FlxG.random.float(0, FlxG.width);
 			y = FlxG.height;
 		}
 	}
@@ -39,8 +39,8 @@ class Bubble extends FlxSprite {
 		return data;
 	}
 
-	override public function update():Void {
-		super.update();
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
 		if(y < FlxG.height / 2) {
 			kill();
 			group.remove(this, true);

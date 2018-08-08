@@ -18,7 +18,7 @@ class Splash extends FlxSprite {
 		this.x = x;
 		this.y = FlxG.height / 2 - height;
 		parent.splash.add(this);
-		new FlxTimer(0.25, removeSplash);
+		new FlxTimer().start(0.25, removeSplash);
 	}
 
 	private function removeSplash(timer:FlxTimer):Void {

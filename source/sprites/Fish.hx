@@ -3,7 +3,7 @@ package sprites;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
-import flixel.util.FlxRandom;
+import flixel.math.FlxRandom;
 
 class Fish extends FlxSprite {
 
@@ -13,8 +13,8 @@ class Fish extends FlxSprite {
 		super();
 		this.group = group;
 		loadFishGraphic();
-		velocity.x = xvel + FlxRandom.floatRanged(-2, 2);
-		velocity.y = yvel + FlxRandom.floatRanged(-0.5, 0.5);
+		velocity.x = xvel + FlxG.random.float(-2, 2);
+		velocity.y = yvel + FlxG.random.float(-0.5, 0.5);
 		animation.play((velocity.x < 0) ? "left" : "right");
 	}
 
@@ -28,8 +28,8 @@ class Fish extends FlxSprite {
 		player.fish();
 	}
 
-	override public function update():Void {
-		super.update();
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
 		stayInTheWater();
 		wrapAround();
 	}

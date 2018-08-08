@@ -52,8 +52,8 @@ class Player extends FlxSprite {
 		splashSound = FlxG.sound.load("sounds/splash.wav");
 	}
 
-	override public function update():Void {
-		super.update();
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
 		updateTime();
 		move();
 		applyState();

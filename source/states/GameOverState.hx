@@ -47,7 +47,7 @@ class GameOverState extends FlxState {
 
 		infoText = new FlxText(10, FlxG.height, Std.int(FlxG.width / 2 - 10), informations[infoIndex], 24);
 		add(infoText);
-		FlxTween.tween(infoText, { y:(FlxG.height - 40) }, 0.4, { startDelay:0.5, ease:FlxEase.quadOut, complete:infoVisible });
+		FlxTween.tween(infoText, { y:(FlxG.height - 40) }, 0.4, { startDelay:0.5, ease:FlxEase.quadOut, onComplete:infoVisible });
 
 		var menu = new FlxText(FlxG.width / 2, FlxG.height, Std.int(FlxG.width / 2 - 10), "ENTER for MENU", 24);
 		menu.alignment = "right";
@@ -56,22 +56,22 @@ class GameOverState extends FlxState {
 	}
 
 	private function infoVisible(tween:FlxTween):Void {
-		new FlxTimer(3, hideInfo);
+		new FlxTimer().start(3, hideInfo);
 	}
 
 	private function hideInfo(timer:FlxTimer):Void {
-		FlxTween.tween(infoText, { alpha:0 }, 0.4, { complete:infoHidden });
+		FlxTween.tween(infoText, { alpha:0 }, 0.4, { onComplete:infoHidden });
 	}
 
 	private function infoHidden(tween:FlxTween):Void {
 		infoIndex = (infoIndex + 1) % informations.length;
 		infoText.text = informations[infoIndex];
-		FlxTween.tween(infoText, { alpha:1 }, 0.4, { complete:infoVisible });
+		FlxTween.tween(infoText, { alpha:1 }, 0.4, { onComplete:infoVisible });
 	}
 
 
-	override public function update():Void {
-		super.update();
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
 		if (FlxG.keys.justPressed.ENTER) {
 			FlxG.switchState(new MenuState(world.getData(worldData)));
 		}

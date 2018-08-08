@@ -2,8 +2,8 @@ package sprites;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.group.FlxTypedGroup;
-import flixel.util.FlxRandom;
+import flixel.group.FlxGroup;
+import flixel.math.FlxRandom;
 import flixel.util.FlxTimer;
 import states.PlayState;
 
@@ -50,7 +50,7 @@ class BubbleGroup extends FlxTypedGroup<Bubble> {
 	}
 
 	private function startTimer():Void {
-		new FlxTimer(FlxRandom.floatRanged(0.5, 1), spawn);
+		new FlxTimer().start(FlxG.random.float(0.5, 1.0), spawn);
 	}
 
 }

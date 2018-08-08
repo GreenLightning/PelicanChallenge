@@ -6,7 +6,7 @@ import flixel.FlxState;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
-import flixel.util.FlxMath;
+import flixel.math.FlxMath;
 import sprites.World;
 import sprites.WorldData;
 import sprites.FishGroup;
@@ -65,8 +65,8 @@ class PlayState extends FlxState {
 		applyTutorialState();
 	}
 
-	override public function update():Void {
-		super.update();
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
 		if (player.time <= 0) {
 			FlxG.switchState(new GameOverState(world.getData(worldData), player.score));
 		}
